@@ -23,7 +23,7 @@ public class Main {
                 String date = new Date().toString();
                 File file = new File("/Users/Peonsson/androidproject3b/" + date + ".txt");
                 fileWriter = new FileWriter(file);
-                System.out.println("got client! ");
+                System.out.println("got client! " + clientSocket.getInetAddress()+ ":" + clientSocket.getPort());
 
 //                System.out.println(clientSocket.getInetAddress());
 //                System.out.println(clientSocket.getPort());
@@ -31,13 +31,10 @@ public class Main {
                 BufferedReader reader = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
                 String str;
                 while ((str = reader.readLine()) != null) {
-                    System.out.println("got data: " + str);
                     fileWriter.append(str);
                 }
 
                 fileWriter.close();
-                System.out.println("returning..");
-
             }
         } catch (IOException e) {
             e.printStackTrace();

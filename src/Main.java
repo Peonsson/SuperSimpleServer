@@ -19,17 +19,15 @@ public class Main {
         try {
             serverSocket = new ServerSocket(PORT_NUMBER);
             while (true) {
+
                 Socket clientSocket = serverSocket.accept();
                 String date = new Date().toString();
                 File file = new File("/Users/Peonsson/androidproject3b/" + date + ".txt");
                 fileWriter = new FileWriter(file);
-                System.out.println("got client! " + clientSocket.getInetAddress()+ ":" + clientSocket.getPort());
-
-//                System.out.println(clientSocket.getInetAddress());
-//                System.out.println(clientSocket.getPort());
-
+                System.out.println("New client! " + clientSocket.getInetAddress() + ":" + clientSocket.getPort());
                 BufferedReader reader = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
                 String str;
+
                 while ((str = reader.readLine()) != null) {
                     fileWriter.append(str);
                 }
